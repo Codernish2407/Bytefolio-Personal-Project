@@ -3,7 +3,22 @@ import { PlaceHolderImages } from './placeholder-images';
 import { Github, Linkedin } from 'lucide-react';
 
 export const about = {
-  education: 'B.Tech in Computer Science Engineering from Lovely Professional University, Phagwara, Punjab (Expected: July 2029). High School Diploma from Vasant Kanya Inter College, Varanasi (Completed: June 2025).',
+  education: [
+    {
+      institution: 'Lovely Professional University',
+      location: 'Phagwara, Punjab',
+      degree: 'Bachelor of Technology (B.Tech)',
+      major: 'Computer Science Engineering',
+      duration: 'August 2025 – July 2029 (Expected)',
+    },
+    {
+      institution: 'Vasant Kanya Inter College',
+      location: 'Varanasi, Uttar Pradesh',
+      degree: 'Class 12 (PCM – Physics, Chemistry, Mathematics)',
+      major: 'Score: 79%',
+      duration: 'Completed: June 2025',
+    },
+  ],
   interests: 'Frontend Development, Video Editing, Web Development, Programming',
   focus: 'Building impactful tech solutions and contributing to projects that drive positive change.',
 };

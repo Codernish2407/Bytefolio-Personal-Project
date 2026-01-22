@@ -11,11 +11,11 @@ export function Hero() {
           <h1 className="text-4xl font-extrabold tracking-tight sm:text-5xl md:text-6xl lg:text-7xl">
             <span className="block">Nishtha Banerjee</span>
             <span className="block bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
-              B.Tech CSE Student
+              Aspiring Software Developer
             </span>
           </h1>
           <p className="mx-auto mt-6 max-w-2xl text-lg text-muted-foreground md:text-xl">
-            Enthusiastic about contributing to projects that drive positive change in the tech landscape.
+            Computer Science Engineering | Web Development | Problem Solving
           </p>
           <div className="mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row">
             <a href="#projects">
