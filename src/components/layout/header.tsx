@@ -21,6 +21,11 @@ export function Header() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [activeSection, setActiveSection] = useState<string>('');
   const isMobile = useIsMobile();
+  const [hasMounted, setHasMounted] = useState(false);
+
+  useEffect(() => {
+    setHasMounted(true);
+  }, []);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -86,21 +91,23 @@ export function Header() {
           <Code className="h-6 w-6 text-primary" />
           <span className="font-bold text-lg">ByteFolio</span>
         </Link>
-        {isMobile ? (
-          <Sheet>
-            <SheetTrigger asChild>
-              <Button variant="ghost" size="icon">
-                <Menu className="h-6 w-6" />
-                <span className="sr-only">Open menu</span>
-              </Button>
-            </SheetTrigger>
-            <SheetContent side="right" className="w-4/5 pt-16">
-              <nav className="flex flex-col gap-4">{navContent}</nav>
-            </SheetContent>
-          </Sheet>
-        ) : (
-          <nav className="flex items-center gap-2">{navContent}</nav>
-        )}
+        {hasMounted ? (
+          isMobile ? (
+            <Sheet>
+              <SheetTrigger asChild>
+                <Button variant="ghost" size="icon">
+                  <Menu className="h-6 w-6" />
+                  <span className="sr-only">Open menu</span>
+                </Button>
+              </SheetTrigger>
+              <SheetContent side="right" className="w-4/5 pt-16">
+                <nav className="flex flex-col gap-4">{navContent}</nav>
+              </SheetContent>
+            </Sheet>
+          ) : (
+            <nav className="flex items-center gap-2">{navContent}</nav>
+          )
+        ) : null}
       </div>
     </header>
   );
