@@ -17,8 +17,8 @@ const fontCode = Source_Code_Pro({
 });
 
 export const metadata: Metadata = {
-  title: 'ByteFolio | A Personal Portfolio',
-  description: 'A modern, production-grade, full-stack personal portfolio website.',
+  title: 'Nishtha Banerjee | B.Tech CSE Student',
+  description: 'The personal portfolio of Nishtha Banerjee, a first-year B.Tech CSE student with hands-on experience in web development, programming, and video editing.',
 };
 
 export default function RootLayout({

@@ -9,13 +9,13 @@ export function Hero() {
       <div className="container mx-auto flex h-full max-w-7xl flex-col items-center justify-center px-4 text-center">
         <div className="animate-fade-in" style={{ animationDelay: '0.2s' }}>
           <h1 className="text-4xl font-extrabold tracking-tight sm:text-5xl md:text-6xl lg:text-7xl">
-            <span className="block">Jane Doe</span>
+            <span className="block">Nishtha Banerjee</span>
             <span className="block bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
-              Full-Stack Developer
+              B.Tech CSE Student
             </span>
           </h1>
           <p className="mx-auto mt-6 max-w-2xl text-lg text-muted-foreground md:text-xl">
-            Building scalable, efficient, and beautiful web applications from concept to cloud.
+            Enthusiastic about contributing to projects that drive positive change in the tech landscape.
           </p>
           <div className="mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row">
             <a href="#projects">

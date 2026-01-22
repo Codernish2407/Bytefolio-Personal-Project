@@ -27,22 +27,22 @@ export function About() {
           <Card className="glass-card md:col-span-1 flex flex-col items-center text-center p-6">
             <Image
               src="https://picsum.photos/seed/avatar/200/200"
-              alt="Jane Doe"
+              alt="Nishtha Banerjee"
               width={120}
               height={120}
               className="rounded-full mb-4 border-2 border-primary"
               data-ai-hint="professional headshot"
             />
-            <h3 className="text-xl font-semibold">Jane Doe</h3>
-            <p className="text-muted-foreground">Full-Stack Developer</p>
+            <h3 className="text-xl font-semibold">Nishtha Banerjee</h3>
+            <p className="text-muted-foreground">B.Tech CSE Student</p>
           </Card>
           <Card className="glass-card md:col-span-2">
             <CardHeader>
-              <CardTitle>Who I Am</CardTitle>
+              <CardTitle>Professional Summary</CardTitle>
             </CardHeader>
             <CardContent className="space-y-4 text-muted-foreground">
               <p>
-                A passionate developer with a knack for building robust and user-friendly applications. My journey in tech is driven by a curiosity to solve complex problems and a desire to continuously learn and grow.
+                Motivated first-year B.Tech CSE student with hands-on experience from multiple internships, demonstrating a solid foundation in web development and programming. Proficient in frontend development and video editing, with a passion for creating impactful tech solutions. Committed to continuous learning and professional growth, eager to leverage skills in dynamic environments that foster innovation and collaboration. Enthusiastic about contributing to projects that drive positive change in the tech landscape.
               </p>
               <div>
                 <h4 className="font-semibold text-foreground mb-1">Education:</h4>

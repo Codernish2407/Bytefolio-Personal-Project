@@ -5,18 +5,6 @@
       "description": "Abstract code on a screen",
       "imageUrl": "https://images.unsplash.com/photo-1555680510-34daedadbdb1?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw4fHxhYnN0cmFjdCUyMGNvZGV8ZW58MHx8fHwxNzY5MDEyMDM0fDA&ixlib=rb-4.1.0&q=80&w=1080",
       "imageHint": "abstract code"
-    },
-    {
-      "id": "project-2",
-      "description": "Futuristic user interface",
-      "imageUrl": "https://images.unsplash.com/photo-1720962158937-7ea890052166?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw0fHxmdXR1cmlzdGljJTIwaW50ZXJmYWNlfGVufDB8fHx8MTc2ODk3NjQxMXww&ixlib=rb-4.1.0&q=80&w=1080",
-      "imageHint": "futuristic interface"
-    },
-    {
-      "id": "project-3",
-      "description": "Data visualization graph",
-      "imageUrl": "https://images.unsplash.com/photo-1551288049-bebda4e38f71?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwzfHxkYXRhJTIwZ3JhcGh8ZW58MHx8fHwxNzY4OTYyMTExfDA&ixlib=rb-4.1.0&q=80&w=1080",
-      "imageHint": "data graph"
     }
   ]
 }
