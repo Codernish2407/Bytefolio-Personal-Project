@@ -1,0 +1,367 @@
+{
+  "entities": {
+    "UserProfile": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "title": "UserProfile",
+      "type": "object",
+      "description": "Represents a user profile on the portfolio website.",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Unique identifier for the user profile."
+        },
+        "firstName": {
+          "type": "string",
+          "description": "First name of the user."
+        },
+        "lastName": {
+          "type": "string",
+          "description": "Last name of the user."
+        },
+        "email": {
+          "type": "string",
+          "description": "Email address of the user.",
+          "format": "email"
+        },
+        "bio": {
+          "type": "string",
+          "description": "A brief biography or description of the user."
+        },
+        "title": {
+          "type": "string",
+          "description": "The job title of the user."
+        }
+      },
+      "required": [
+        "id",
+        "firstName",
+        "lastName",
+        "email",
+        "bio",
+        "title"
+      ]
+    },
+    "Project": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "title": "Project",
+      "type": "object",
+      "description": "Represents a project showcased in the portfolio.",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Unique identifier for the project."
+        },
+        "title": {
+          "type": "string",
+          "description": "Title of the project."
+        },
+        "description": {
+          "type": "string",
+          "description": "Detailed description of the project."
+        },
+        "techStack": {
+          "type": "array",
+          "description": "List of technologies used in the project.",
+          "items": {
+            "type": "string"
+          }
+        },
+        "githubLink": {
+          "type": "string",
+          "description": "Link to the GitHub repository of the project.",
+          "format": "uri"
+        },
+        "liveDemoLink": {
+          "type": "string",
+          "description": "Link to the live demo of the project.",
+          "format": "uri"
+        },
+        "category": {
+          "type": "string",
+          "description": "Category of the project (e.g., Web, Backend, DSA, Hackathon)."
+        }
+      },
+      "required": [
+        "id",
+        "title",
+        "description",
+        "techStack",
+        "githubLink",
+        "category"
+      ]
+    },
+    "Skill": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "title": "Skill",
+      "type": "object",
+      "description": "Represents a skill of the user.",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Unique identifier for the skill."
+        },
+        "name": {
+          "type": "string",
+          "description": "Name of the skill (e.g., JavaScript, React, Node.js)."
+        },
+        "category": {
+          "type": "string",
+          "description": "Category of the skill (e.g., Languages, Frameworks, Tools)."
+        },
+        "projectIds": {
+          "type": "array",
+          "description": "References to Projects. (Relationship: Skill N:N Project)",
+          "items": {
+            "type": "string"
+          }
+        }
+      },
+      "required": [
+        "id",
+        "name",
+        "category"
+      ]
+    },
+    "Experience": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "title": "Experience",
+      "type": "object",
+      "description": "Represents a past work experience or internship.",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Unique identifier for the experience."
+        },
+        "role": {
+          "type": "string",
+          "description": "Job title or role during the experience."
+        },
+        "company": {
+          "type": "string",
+          "description": "Name of the company or organization."
+        },
+        "startDate": {
+          "type": "string",
+          "description": "Start date of the experience.",
+          "format": "date-time"
+        },
+        "endDate": {
+          "type": "string",
+          "description": "End date of the experience.",
+          "format": "date-time"
+        },
+        "description": {
+          "type": "string",
+          "description": "Description of the role and responsibilities."
+        },
+        "toolsUsed": {
+          "type": "array",
+          "description": "List of tools and technologies used during the experience.",
+          "items": {
+            "type": "string"
+          }
+        }
+      },
+      "required": [
+        "id",
+        "role",
+        "company",
+        "startDate",
+        "endDate",
+        "description",
+        "toolsUsed"
+      ]
+    },
+    "Achievement": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "title": "Achievement",
+      "type": "object",
+      "description": "Represents an achievement or certification.",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Unique identifier for the achievement."
+        },
+        "title": {
+          "type": "string",
+          "description": "Title of the achievement."
+        },
+        "description": {
+          "type": "string",
+          "description": "Description of the achievement."
+        },
+        "date": {
+          "type": "string",
+          "description": "Date of the achievement.",
+          "format": "date-time"
+        }
+      },
+      "required": [
+        "id",
+        "title",
+        "description",
+        "date"
+      ]
+    },
+    "ContactFormSubmission": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "title": "ContactFormSubmission",
+      "type": "object",
+      "description": "Represents a submission from the contact form.",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Unique identifier for the contact form submission."
+        },
+        "name": {
+          "type": "string",
+          "description": "Name of the person submitting the form."
+        },
+        "email": {
+          "type": "string",
+          "description": "Email address of the person submitting the form.",
+          "format": "email"
+        },
+        "message": {
+          "type": "string",
+          "description": "Message content from the contact form."
+        },
+        "submissionDate": {
+          "type": "string",
+          "description": "Date and time of the submission.",
+          "format": "date-time"
+        }
+      },
+      "required": [
+        "id",
+        "name",
+        "email",
+        "message",
+        "submissionDate"
+      ]
+    }
+  },
+  "auth": {
+    "providers": [
+      "password",
+      "anonymous"
+    ]
+  },
+  "firestore": {
+    "structure": [
+      {
+        "path": "/users/{userId}/profile",
+        "definition": {
+          "entityName": "UserProfile",
+          "schema": {
+            "$ref": "#/backend/entities/UserProfile"
+          },
+          "description": "Stores user profile data. Accessible only to the user and administrators.",
+          "params": [
+            {
+              "name": "userId",
+              "description": "The unique identifier for the user."
+            }
+          ]
+        }
+      },
+      {
+        "path": "/users/{userId}/projects/{projectId}",
+        "definition": {
+          "entityName": "Project",
+          "schema": {
+            "$ref": "#/backend/entities/Project"
+          },
+          "description": "Stores projects associated with a specific user. Accessible only to the user and administrators.",
+          "params": [
+            {
+              "name": "userId",
+              "description": "The unique identifier for the user."
+            },
+            {
+              "name": "projectId",
+              "description": "The unique identifier for the project."
+            }
+          ]
+        }
+      },
+      {
+        "path": "/users/{userId}/skills/{skillId}",
+        "definition": {
+          "entityName": "Skill",
+          "schema": {
+            "$ref": "#/backend/entities/Skill"
+          },
+          "description": "Stores skills associated with a specific user. Accessible only to the user and administrators.",
+          "params": [
+            {
+              "name": "userId",
+              "description": "The unique identifier for the user."
+            },
+            {
+              "name": "skillId",
+              "description": "The unique identifier for the skill."
+            }
+          ]
+        }
+      },
+      {
+        "path": "/users/{userId}/experiences/{experienceId}",
+        "definition": {
+          "entityName": "Experience",
+          "schema": {
+            "$ref": "#/backend/entities/Experience"
+          },
+          "description": "Stores experience entries associated with a specific user. Accessible only to the user and administrators.",
+          "params": [
+            {
+              "name": "userId",
+              "description": "The unique identifier for the user."
+            },
+            {
+              "name": "experienceId",
+              "description": "The unique identifier for the experience."
+            }
+          ]
+        }
+      },
+      {
+        "path": "/users/{userId}/achievements/{achievementId}",
+        "definition": {
+          "entityName": "Achievement",
+          "schema": {
+            "$ref": "#/backend/entities/Achievement"
+          },
+          "description": "Stores achievements associated with a specific user. Accessible only to the user and administrators.",
+          "params": [
+            {
+              "name": "userId",
+              "description": "The unique identifier for the user."
+            },
+            {
+              "name": "achievementId",
+              "description": "The unique identifier for the achievement."
+            }
+          ]
+        }
+      },
+      {
+        "path": "/contact_form_submissions/{submissionId}",
+        "definition": {
+          "entityName": "ContactFormSubmission",
+          "schema": {
+            "$ref": "#/backend/entities/ContactFormSubmission"
+          },
+          "description": "Stores contact form submissions. Accessible only to administrators.",
+          "params": [
+            {
+              "name": "submissionId",
+              "description": "The unique identifier for the contact form submission."
+            }
+          ]
+        }
+      }
+    ],
+    "reasoning": "The Firestore structure is designed to manage user profiles, projects, skills, experiences, achievements, and contact form submissions for a personal portfolio website. It prioritizes authorization independence by leveraging path-based ownership for user-specific data and segregates data with different access requirements. The structure will look like `/users/{userId}/profile`, `/users/{userId}/projects/{projectId}` and so on. This structure provides clear ownership. Contact form submissions are stored in a separate collection (`/contact_form_submissions`) to allow for different security rules, in this case only accessible to administrators. All dates are stored as strings to maintain compatibility with Javascript and to enforce a predictable schema. The `Skill` entity's `projectIds` property establishes a `N:N` relationship between skills and projects. This design supports QAPs by enabling secure list operations based on ownership and role-based access control, implemented via dedicated collections."
+  }
+}

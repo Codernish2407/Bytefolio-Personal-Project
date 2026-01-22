@@ -1,0 +1,169 @@
+/**
+ * Core Philosophy:
+ * This ruleset enforces a strict user-ownership model for a personal portfolio application.
+ * All user-generated content, such as profiles, projects, skills, and experiences, is
+ * confined within a user-specific data tree. Access is granted only to the authenticated
+ * user who owns that specific data tree.
+ *
+ * Data Structure:
+ * All user-specific data is hierarchically organized under the path `/users/{userId}`.
+ * For example, a user's projects are located at `/users/{userId}/projects/{projectId}`.
+ * This structure inherently links data to its owner, simplifying security rules.
+ * Publicly submitted data, like contact form messages, is stored in a separate top-level
+ * collection (`/contact_form_submissions`) to enforce different access controls.
+ *
+ * Key Security Decisions:
+ * - Strict Ownership: A user can only access data under their own `{userId}` path.
+ * - No User Enumeration: Listing documents in the top-level `/users` collection is explicitly
+ *   disallowed to prevent leaking user information.
+ * - Public Write, Private Read: The `/contact_form_submissions` collection allows anyone
+ *   (including unauthenticated visitors) to submit a message, but reading, updating, or
+ *   deleting these submissions is prohibited pending the implementation of an admin role.
+ * - Relational Integrity: On creation, the internal `id` field of a document must match
+ *   the document's ID in the path. This `id` field is then enforced as immutable on updates
+ *   to maintain data consistency.
+ *
+ * Denormalization for Authorization:
+ * The data structure leverages path-based authorization. The user's UID is part of the document
+ * path (e.g., `/users/{userId}/...`), which provides all necessary information for authorization
+ * checks directly. This avoids the need for slower and more expensive `get()` calls to other
+ * documents to verify ownership.
+ *
+ * Structural Segregation:
+ * User-private data (profiles, projects) is structurally segregated from publicly submitted
+ * data (contact forms) by placing them in different root collections. This allows for simple,
+ * performant, and secure rules tailored to each data type without complex logic in a
+ * single collection.
+ */
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    // Helper functions to improve readability and reuse of logic.
+    function isSignedIn() {
+      return request.auth != null;
+    }
+
+    // Checks if the requesting user's UID matches the document's owner UID from the path.
+    function isOwner(userId) {
+      return isSignedIn() && request.auth.uid == userId;
+    }
+
+    // Ensures an update or delete operation targets an existing document and is performed by the owner.
+    function isExistingOwner(userId) {
+      return isOwner(userId) && resource != null;
+    }
+    
+    // On create, validates that the document's internal ID field matches its firestore document ID.
+    function hasValidIdOnCreate(docId) {
+      return request.resource.data.id == docId;
+    }
+    
+    // On update, ensures the document's internal ID field cannot be changed.
+    function idIsImmutable() {
+      return request.resource.data.id == resource.data.id;
+    }
+
+    /**
+     * @description Controls access to a user's core profile document.
+     * @path /users/{userId}
+     * @allow (create) An authenticated user with UID 'user_abc' creating their own profile at `/users/user_abc`.
+     * @allow (get) User 'user_abc' reading their own profile at `/users/user_abc`.
+     * @deny (list) Any user attempting to list all documents in the `/users` collection.
+     * @deny (update) User 'user_xyz' trying to update the profile of 'user_abc'.
+     * @principle Restricts access to a user's own data tree and prevents user enumeration.
+     */
+    match /users/{userId} {
+      allow get: if isOwner(userId);
+      allow list: if false;
+      allow create: if isOwner(userId) && hasValidIdOnCreate(userId);
+      allow update: if isExistingOwner(userId) && idIsImmutable();
+      allow delete: if isExistingOwner(userId);
+    }
+
+    /**
+     * @description Secures the projects within a user's portfolio.
+     * @path /users/{userId}/projects/{projectId}
+     * @allow (create) User 'user_abc' creating a new project in their own subcollection `/users/user_abc/projects/proj_123`.
+     * @allow (list) User 'user_abc' listing all projects at `/users/user_abc/projects`.
+     * @deny (get) User 'user_xyz' trying to read a project from `/users/user_abc/projects/proj_123`.
+     * @deny (delete) Any user trying to delete a project they do not own.
+     * @principle Enforces document ownership for all operations within a user-specific subcollection.
+     */
+    match /users/{userId}/projects/{projectId} {
+      allow get: if isOwner(userId);
+      allow list: if isOwner(userId);
+      allow create: if isOwner(userId) && hasValidIdOnCreate(projectId);
+      allow update: if isExistingOwner(userId) && idIsImmutable();
+      allow delete: if isExistingOwner(userId);
+    }
+
+    /**
+     * @description Secures the skills within a user's portfolio.
+     * @path /users/{userId}/skills/{skillId}
+     * @allow (create) User 'user_abc' creating a new skill in their own subcollection `/users/user_abc/skills/skill_123`.
+     * @allow (list) User 'user_abc' listing all skills at `/users/user_abc/skills`.
+     * @deny (get) User 'user_xyz' trying to read a skill from `/users/user_abc/skills/skill_123`.
+     * @deny (delete) Any user trying to delete a skill they do not own.
+     * @principle Enforces document ownership for all operations within a user-specific subcollection.
+     */
+    match /users/{userId}/skills/{skillId} {
+      allow get: if isOwner(userId);
+      allow list: if isOwner(userId);
+      allow create: if isOwner(userId) && hasValidIdOnCreate(skillId);
+      allow update: if isExistingOwner(userId) && idIsImmutable();
+      allow delete: if isExistingOwner(userId);
+    }
+
+    /**
+     * @description Secures the work experiences within a user's portfolio.
+     * @path /users/{userId}/experiences/{experienceId}
+     * @allow (create) User 'user_abc' creating a new experience in their own subcollection `/users/user_abc/experiences/exp_123`.
+     * @allow (list) User 'user_abc' listing all experiences at `/users/user_abc/experiences`.
+     * @deny (get) User 'user_xyz' trying to read an experience from `/users/user_abc/experiences/exp_123`.
+     * @deny (delete) Any user trying to delete an experience they do not own.
+     * @principle Enforces document ownership for all operations within a user-specific subcollection.
+     */
+    match /users/{userId}/experiences/{experienceId} {
+      allow get: if isOwner(userId);
+      allow list: if isOwner(userId);
+      allow create: if isOwner(userId) && hasValidIdOnCreate(experienceId);
+      allow update: if isExistingOwner(userId) && idIsImmutable();
+      allow delete: if isExistingOwner(userId);
+    }
+
+    /**
+     * @description Secures the achievements within a user's portfolio.
+     * @path /users/{userId}/achievements/{achievementId}
+     * @allow (create) User 'user_abc' creating a new achievement in their own subcollection `/users/user_abc/achievements/ach_123`.
+     * @allow (list) User 'user_abc' listing all achievements at `/users/user_abc/achievements`.
+     * @deny (get) User 'user_xyz' trying to read an achievement from `/users/user_abc/achievements/ach_123`.
+     * @deny (delete) Any user trying to delete an achievement they do not own.
+     * @principle Enforces document ownership for all operations within a user-specific subcollection.
+     */
+    match /users/{userId}/achievements/{achievementId} {
+      allow get: if isOwner(userId);
+      allow list: if isOwner(userId);
+      allow create: if isOwner(userId) && hasValidIdOnCreate(achievementId);
+      allow update: if isExistingOwner(userId) && idIsImmutable();
+      allow delete: if isExistingOwner(userId);
+    }
+
+    /**
+     * @description Manages submissions from the public contact form.
+     * @path /contact_form_submissions/{submissionId}
+     * @allow (create) Any user, including anonymous visitors, submitting the contact form.
+     * @deny (get) Any user trying to read a submission.
+     * @deny (list) Any user trying to list all submissions.
+     * @deny (update) Any user trying to modify a submission after it has been created.
+     * @principle Allows public write access for data collection but denies all read and modification access to non-admins.
+     */
+    match /contact_form_submissions/{submissionId} {
+      allow get: if false; // TODO: Allow if request.auth has an 'admin' custom claim.
+      allow list: if false; // TODO: Allow if request.auth has an 'admin' custom claim.
+      allow create: if true;
+      allow update: if false;
+      allow delete: if false; // TODO: Allow if request.auth has an 'admin' custom claim.
+    }
+  }
+}
