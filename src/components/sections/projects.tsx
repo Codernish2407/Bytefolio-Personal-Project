@@ -9,31 +9,18 @@ import { Button } from '@/components/ui/button';
 import { useCollection, useFirestore, useMemoFirebase } from '@/firebase';
 import { collection } from 'firebase/firestore';
 import type { Project } from '@/lib/types';
-import { addDocumentNonBlocking } from '@/firebase/non-blocking-updates';
-import { PlaceHolderImages } from '@/lib/placeholder-images';
-import { useEffect } from 'react';
 
 function ProjectsList() {
   const firestore = useFirestore();
   const projectsQuery = useMemoFirebase(() => collection(firestore, 'projects'), [firestore]);
   const { data: projects, isLoading } = useCollection<Project>(projectsQuery);
 
-  useEffect(() => {
-    // Seed data if no projects exist
-    if (projects && projects.length === 0) {
-      const defaultProject: Omit<Project, 'id'> = {
-        title: 'FocusFlex – Productivity & Focus Website',
-        description: 'Developed a productivity-focused website using HTML, CSS, and JavaScript. Backend concepts supported using AI tools like Firebase Studio. Designed to help students manage distractions and improve focus. This was a Hackathon Project.',
-        techStack: ['HTML', 'CSS', 'JavaScript', 'Firebase Studio'],
-        githubUrl: 'https://github.com/Codernish2407',
-        image: PlaceHolderImages.find(p => p.id === 'project-1')?.imageUrl || '',
-      };
-      addDocumentNonBlocking(collection(firestore, 'projects'), defaultProject);
-    }
-  }, [projects, firestore]);
-
   if (isLoading) {
-    return <p>Loading projects...</p>;
+    return <p className="text-center text-muted-foreground">Loading projects...</p>;
+  }
+
+  if (!projects || projects.length === 0) {
+    return <p className="text-center text-muted-foreground">No projects found. The database may be empty.</p>
   }
 
   return (
@@ -94,5 +81,3 @@ export function Projects() {
     </section>
   );
 }
-
-    
