@@ -1,10 +1,86 @@
+'use client';
+
 import Image from 'next/image';
 import Link from 'next/link';
-import { projects } from '@/lib/data';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription, CardFooter } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Github, ExternalLink } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import { useCollection, useFirestore, useMemoFirebase } from '@/firebase';
+import { collection } from 'firebase/firestore';
+import type { Project } from '@/lib/types';
+import { addDocumentNonBlocking } from '@/firebase/non-blocking-updates';
+import { PlaceHolderImages } from '@/lib/placeholder-images';
+import { useEffect } from 'react';
+
+function ProjectsList() {
+  const firestore = useFirestore();
+  const projectsQuery = useMemoFirebase(() => collection(firestore, 'projects'), [firestore]);
+  const { data: projects, isLoading } = useCollection<Project>(projectsQuery);
+
+  useEffect(() => {
+    // Seed data if no projects exist
+    if (projects && projects.length === 0) {
+      const defaultProject: Omit<Project, 'id'> = {
+        title: 'FocusFlex – Productivity & Focus Website',
+        description: 'Developed a productivity-focused website using HTML, CSS, and JavaScript. Backend concepts supported using AI tools like Firebase Studio. Designed to help students manage distractions and improve focus. This was a Hackathon Project.',
+        techStack: ['HTML', 'CSS', 'JavaScript', 'Firebase Studio'],
+        githubUrl: 'https://github.com/Codernish2407',
+        image: PlaceHolderImages.find(p => p.id === 'project-1')?.imageUrl || '',
+      };
+      addDocumentNonBlocking(collection(firestore, 'projects'), defaultProject);
+    }
+  }, [projects, firestore]);
+
+  if (isLoading) {
+    return <p>Loading projects...</p>;
+  }
+
+  return (
+     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+      {projects?.map((project) => (
+        <Card key={project.id} className="glass-card flex flex-col overflow-hidden">
+          <CardHeader>
+            <div className="aspect-[3/2] relative mb-4">
+              <Image
+                src={project.image}
+                alt={project.title}
+                fill
+                className="object-cover rounded-t-lg"
+                data-ai-hint="project screenshot"
+              />
+            </div>
+            <CardTitle>{project.title}</CardTitle>
+          </CardHeader>
+          <CardContent className="flex-grow">
+            <CardDescription>{project.description}</CardDescription>
+            <div className="flex flex-wrap gap-2 mt-4">
+              {project.techStack.map((tech) => (
+                <Badge key={tech} variant="secondary">{tech}</Badge>
+              ))}
+            </div>
+          </CardContent>
+          <CardFooter className="flex justify-end gap-2">
+            <Button variant="ghost" size="icon" asChild>
+              <Link href={project.githubUrl} target="_blank" rel="noopener noreferrer">
+                <Github className="h-5 w-5" />
+                <span className="sr-only">GitHub</span>
+              </Link>
+            </Button>
+            {project.liveUrl && (
+              <Button variant="ghost" size="icon" asChild>
+                <Link href={project.liveUrl} target="_blank" rel="noopener noreferrer">
+                  <ExternalLink className="h-5 w-5" />
+                  <span className="sr-only">Live Demo</span>
+                </Link>
+              </Button>
+            )}
+          </CardFooter>
+        </Card>
+      ))}
+    </div>
+  )
+}
 
 export function Projects() {
   return (
@@ -13,49 +89,10 @@ export function Projects() {
         <h2 className="text-3xl font-bold tracking-tight text-center sm:text-4xl mb-12">
           Projects
         </h2>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {projects.map((project) => (
-            <Card key={project.id} className="glass-card flex flex-col overflow-hidden">
-              <CardHeader>
-                <div className="aspect-[3/2] relative mb-4">
-                  <Image
-                    src={project.image}
-                    alt={project.title}
-                    fill
-                    className="object-cover rounded-t-lg"
-                    data-ai-hint="project screenshot"
-                  />
-                </div>
-                <CardTitle>{project.title}</CardTitle>
-              </CardHeader>
-              <CardContent className="flex-grow">
-                <CardDescription>{project.description}</CardDescription>
-                <div className="flex flex-wrap gap-2 mt-4">
-                  {project.techStack.map((tech) => (
-                    <Badge key={tech} variant="secondary">{tech}</Badge>
-                  ))}
-                </div>
-              </CardContent>
-              <CardFooter className="flex justify-end gap-2">
-                <Button variant="ghost" size="icon" asChild>
-                  <Link href={project.githubUrl} target="_blank" rel="noopener noreferrer">
-                    <Github className="h-5 w-5" />
-                    <span className="sr-only">GitHub</span>
-                  </Link>
-                </Button>
-                {project.liveUrl && (
-                  <Button variant="ghost" size="icon" asChild>
-                    <Link href={project.liveUrl} target="_blank" rel="noopener noreferrer">
-                      <ExternalLink className="h-5 w-5" />
-                      <span className="sr-only">Live Demo</span>
-                    </Link>
-                  </Button>
-                )}
-              </CardFooter>
-            </Card>
-          ))}
-        </div>
+        <ProjectsList />
       </div>
     </section>
   );
 }
+
+    
