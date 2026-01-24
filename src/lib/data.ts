@@ -71,7 +71,10 @@ export const experiences: Experience[] = [
     description: [
       'Created social awareness videos and handled editing workflows for online campaigns.',
     ],
-    certificateUrl: PlaceHolderImages.find(p => p.id === 'cert-yathaarth')?.imageUrl,
+    certificateUrl: [
+      'https://iili.io/f6q29Ag.png',
+      'https://iili.io/f6q2JDJ.png',
+    ],
   },
 ];
 

@@ -11,6 +11,7 @@ import {
 } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
 import Image from "next/image";
+import { cn } from '@/lib/utils';
 
 export function Experience() {
   return (
@@ -47,21 +48,42 @@ export function Experience() {
                     <div className="mt-4">
                       <Dialog>
                         <DialogTrigger asChild>
-                          <Button variant="outline" size="sm">View Certificate</Button>
+                          <Button variant="outline" size="sm">
+                            {Array.isArray(exp.certificateUrl) ? 'View Certificates' : 'View Certificate'}
+                          </Button>
                         </DialogTrigger>
-                        <DialogContent className="max-w-4xl">
+                        <DialogContent className={cn(
+                          "max-w-4xl",
+                          Array.isArray(exp.certificateUrl) && "max-w-6xl"
+                        )}>
                           <DialogHeader>
-                            <DialogTitle>{exp.company} - Certificate</DialogTitle>
+                            <DialogTitle>{exp.company} - Certificate{Array.isArray(exp.certificateUrl) ? 's' : ''}</DialogTitle>
                           </DialogHeader>
-                          <div className="relative aspect-video mt-4">
-                            <Image
-                              src={exp.certificateUrl}
-                              alt={`Certificate for ${exp.role} at ${exp.company}`}
-                              fill
-                              className="object-contain"
-                              data-ai-hint="certificate document"
-                            />
-                          </div>
+                          {Array.isArray(exp.certificateUrl) ? (
+                            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4">
+                              {exp.certificateUrl.map((url, i) => (
+                                <div key={i} className="relative aspect-[8/11]">
+                                  <Image
+                                    src={url}
+                                    alt={`Certificate for ${exp.role} at ${exp.company} (${i + 1})`}
+                                    fill
+                                    className="object-contain"
+                                    data-ai-hint="certificate document"
+                                  />
+                                </div>
+                              ))}
+                            </div>
+                          ) : (
+                            <div className="relative aspect-[8/11] mt-4">
+                              <Image
+                                src={exp.certificateUrl as string}
+                                alt={`Certificate for ${exp.role} at ${exp.company}`}
+                                fill
+                                className="object-contain"
+                                data-ai-hint="certificate document"
+                              />
+                            </div>
+                          )}
                         </DialogContent>
                       </Dialog>
                     </div>

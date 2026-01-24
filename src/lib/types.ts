@@ -33,7 +33,7 @@ export type Experience = {
   company: string;
   duration: string;
   description: string[];
-  certificateUrl?: string;
+  certificateUrl?: string | string[];
 };
 
 export type Achievement = {
