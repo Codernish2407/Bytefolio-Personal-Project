@@ -2,6 +2,15 @@
 
 import { experiences } from '@/lib/data';
 import { Briefcase, CheckCircle } from 'lucide-react';
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog";
+import { Button } from "@/components/ui/button";
+import Image from "next/image";
 
 export function Experience() {
   return (
@@ -34,6 +43,29 @@ export function Experience() {
                       </li>
                     ))}
                   </ul>
+                  {exp.certificateUrl && (
+                    <div className="mt-4">
+                      <Dialog>
+                        <DialogTrigger asChild>
+                          <Button variant="outline" size="sm">View Certificate</Button>
+                        </DialogTrigger>
+                        <DialogContent className="max-w-3xl">
+                          <DialogHeader>
+                            <DialogTitle>{exp.company} - Certificate</DialogTitle>
+                          </DialogHeader>
+                          <div className="relative aspect-[8/11] mt-4">
+                            <Image
+                              src={exp.certificateUrl}
+                              alt={`Certificate for ${exp.role} at ${exp.company}`}
+                              fill
+                              className="object-contain"
+                              data-ai-hint="certificate document"
+                            />
+                          </div>
+                        </DialogContent>
+                      </Dialog>
+                    </div>
+                  )}
                 </div>
               </div>
               {/* This is a simple trick to alternate sides on larger screens */}

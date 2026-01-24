@@ -53,6 +53,7 @@ export const experiences: Experience[] = [
     description: [
       'Edited promotional and short-form videos using CapCut and collaborated with the media team.',
     ],
+    certificateUrl: PlaceHolderImages.find(p => p.id === 'cert-agnivikram')?.imageUrl,
   },
   {
     role: 'Email Marketing Intern',
@@ -61,6 +62,7 @@ export const experiences: Experience[] = [
     description: [
       'Designed email content, managed formatting, and assisted with outreach campaigns.',
     ],
+    certificateUrl: PlaceHolderImages.find(p => p.id === 'cert-gema')?.imageUrl,
   },
   {
     role: 'Video Editor',
@@ -69,6 +71,7 @@ export const experiences: Experience[] = [
     description: [
       'Created social awareness videos and handled editing workflows for online campaigns.',
     ],
+    certificateUrl: PlaceHolderImages.find(p => p.id === 'cert-yathaarth')?.imageUrl,
   },
 ];
 
