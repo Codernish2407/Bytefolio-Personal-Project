@@ -84,7 +84,7 @@ export const experiences: Experience[] = [
 export const achievements: Achievement[] = [
   {
     title: 'Hackathons',
-    description: 'Participated in Hack-Adhyaay national level hackathon and received positive feedback from judges and placing among top potential teams.',
+    description: 'Participated in Hack-Adhyaay national level hackathon and received positive feedback from judges, placing among top potential teams.',
     year: '2025-2026',
     certificates: [
       { title: 'DevsHouse Hackathon', url: 'https://iili.io/f6qYG8F.png' },
