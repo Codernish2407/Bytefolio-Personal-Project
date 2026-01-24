@@ -39,6 +39,6 @@ export type Experience = {
 export type Achievement = {
   title: string;
   description: string | string[];
-  year: number;
+  year: string;
   certificateUrls?: string[];
 };

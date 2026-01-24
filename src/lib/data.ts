@@ -85,7 +85,7 @@ export const achievements: Achievement[] = [
   {
     title: 'Hackathon Participant',
     description: 'Received strong feedback from judges (Top 5 potential) and participation certificates.',
-    year: 2025,
+    year: '2025-2026',
     certificateUrls: [
       'https://iili.io/f6qYG8F.png',
       'https://iili.io/f6qYEa1.png',
@@ -99,9 +99,15 @@ export const achievements: Achievement[] = [
       'Completed the Tata Forage Data Visualization Job Simulation.',
       'Earned the Skill India Certificate for Basic Frontend Development.',
       'Awarded the Basic Data Analysis Certificate.',
-      'Received letters of completion for all three internship roles.',
     ],
-    year: 2025,
+    year: '2025-2026',
+    certificateUrls: [
+      'https://iili.io/f6qlWue.png',
+      'https://iili.io/f6qlwnj.png',
+      'https://iili.io/f6qlhZb.png',
+      'https://iili.io/f6qlXwu.png',
+      'https://iili.io/f6qlNMx.png',
+    ]
   },
 ];
 
