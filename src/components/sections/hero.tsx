@@ -24,9 +24,9 @@ export function Hero() {
                 <ArrowDown className="ml-2 h-5 w-5" />
               </Button>
             </a>
-            <a href="https://i.postimg.cc/tJhPFFC6/Nishtha-s-Resume.png" download="Nishtha_Banerjee_Resume.png">
+            <a href="https://i.postimg.cc/tJhPFFC6/Nishtha-s-Resume.png" target="_blank" rel="noopener noreferrer">
               <Button size="lg" variant="outline" suppressHydrationWarning>
-                Download Resume
+                View Resume
                 <FileText className="ml-2 h-5 w-5" />
               </Button>
             </a>
