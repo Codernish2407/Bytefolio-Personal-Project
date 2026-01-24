@@ -21,93 +21,86 @@ export function Experience() {
           Experience
         </h2>
         <div className="relative max-w-3xl mx-auto">
-          <div className="absolute left-1/2 top-0 h-full w-0.5 -translate-x-1/2 bg-border"></div>
-          {experiences.map((exp, index) => (
-            <div key={index} className="relative mb-12 flex items-center w-full">
-              <div className="w-1/2 pr-8 text-right">
-                <h3 className="text-lg font-semibold text-primary">{exp.role}</h3>
-                <p className="text-md font-medium">{exp.company}</p>
-                <p className="text-sm text-muted-foreground">{exp.duration}</p>
-              </div>
-              <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 z-10">
-                <div className="flex h-10 w-10 items-center justify-center rounded-full bg-background border-2 border-primary">
-                  <Briefcase className="h-5 w-5 text-primary" />
+          <div className="absolute left-4 top-0 h-full w-0.5 bg-border md:left-1/2 md:-translate-x-1/2"></div>
+          <div className="space-y-12">
+            {experiences.map((exp, index) => (
+              <div key={index} className="relative">
+                <div className="absolute left-4 top-1 -translate-x-1/2 z-10 md:left-1/2">
+                  <div className="flex h-8 w-8 items-center justify-center rounded-full bg-background border-2 border-primary">
+                    <Briefcase className="h-4 w-4 text-primary" />
+                  </div>
+                </div>
+
+                <div className={cn(
+                  "pl-12 md:pl-0 md:w-1/2",
+                  index % 2 !== 0 && "md:ml-auto"
+                )}>
+                  <div className={cn(
+                    "text-left",
+                    index % 2 === 0 ? 'md:text-right' : 'md:text-left'
+                  )}>
+                    <h3 className="text-lg font-semibold text-primary">{exp.role}</h3>
+                    <p className="text-md font-medium">{exp.company}</p>
+                    <p className="text-sm text-muted-foreground">{exp.duration}</p>
+                  </div>
+                  <div className={cn("mt-2 p-6 rounded-lg glass-card text-left", index % 2 === 0 ? "md:mr-8" : "md:ml-0")}>
+                    <ul className="space-y-2">
+                      {exp.description.map((item, i) => (
+                        <li key={i} className="flex items-start gap-2 text-sm text-muted-foreground">
+                          <CheckCircle className="h-4 w-4 mt-1 text-accent flex-shrink-0" />
+                          <span>{item}</span>
+                        </li>
+                      ))}
+                    </ul>
+                    {exp.certificateUrl && (
+                      <div className="mt-4">
+                        <Dialog>
+                          <DialogTrigger asChild>
+                            <Button variant="outline" size="sm">
+                              {Array.isArray(exp.certificateUrl) ? 'View Certificates' : 'View Certificate'}
+                            </Button>
+                          </DialogTrigger>
+                          <DialogContent className={cn(
+                            "max-w-4xl",
+                            Array.isArray(exp.certificateUrl) && "max-w-6xl"
+                          )}>
+                            <DialogHeader>
+                              <DialogTitle>{exp.company} - Certificate{Array.isArray(exp.certificateUrl) ? 's' : ''}</DialogTitle>
+                            </DialogHeader>
+                            {Array.isArray(exp.certificateUrl) ? (
+                              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-4">
+                                {exp.certificateUrl.map((url, i) => (
+                                  <div key={i} className="relative aspect-[8/11]">
+                                    <Image
+                                      src={url}
+                                      alt={`Certificate for ${exp.role} at ${exp.company} (${i + 1})`}
+                                      fill
+                                      className="object-contain"
+                                      data-ai-hint="certificate document"
+                                    />
+                                  </div>
+                                ))}
+                              </div>
+                            ) : (
+                              <div className="relative aspect-[8/11] mt-4">
+                                <Image
+                                  src={exp.certificateUrl as string}
+                                  alt={`Certificate for ${exp.role} at ${exp.company}`}
+                                  fill
+                                  className="object-contain"
+                                  data-ai-hint="certificate document"
+                                />
+                              </div>
+                            )}
+                          </DialogContent>
+                        </Dialog>
+                      </div>
+                    )}
+                  </div>
                 </div>
               </div>
-              <div className="w-1/2 pl-8">
-                <div className="p-6 rounded-lg glass-card">
-                  <ul className="space-y-2">
-                    {exp.description.map((item, i) => (
-                      <li key={i} className="flex items-start gap-2 text-sm text-muted-foreground">
-                        <CheckCircle className="h-4 w-4 mt-1 text-accent flex-shrink-0" />
-                        <span>{item}</span>
-                      </li>
-                    ))}
-                  </ul>
-                  {exp.certificateUrl && (
-                    <div className="mt-4">
-                      <Dialog>
-                        <DialogTrigger asChild>
-                          <Button variant="outline" size="sm">
-                            {Array.isArray(exp.certificateUrl) ? 'View Certificates' : 'View Certificate'}
-                          </Button>
-                        </DialogTrigger>
-                        <DialogContent className={cn(
-                          "max-w-4xl",
-                          Array.isArray(exp.certificateUrl) && "max-w-6xl"
-                        )}>
-                          <DialogHeader>
-                            <DialogTitle>{exp.company} - Certificate{Array.isArray(exp.certificateUrl) ? 's' : ''}</DialogTitle>
-                          </DialogHeader>
-                          {Array.isArray(exp.certificateUrl) ? (
-                            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4">
-                              {exp.certificateUrl.map((url, i) => (
-                                <div key={i} className="relative aspect-[8/11]">
-                                  <Image
-                                    src={url}
-                                    alt={`Certificate for ${exp.role} at ${exp.company} (${i + 1})`}
-                                    fill
-                                    className="object-contain"
-                                    data-ai-hint="certificate document"
-                                  />
-                                </div>
-                              ))}
-                            </div>
-                          ) : (
-                            <div className="relative aspect-[8/11] mt-4">
-                              <Image
-                                src={exp.certificateUrl as string}
-                                alt={`Certificate for ${exp.role} at ${exp.company}`}
-                                fill
-                                className="object-contain"
-                                data-ai-hint="certificate document"
-                              />
-                            </div>
-                          )}
-                        </DialogContent>
-                      </Dialog>
-                    </div>
-                  )}
-                </div>
-              </div>
-              {/* This is a simple trick to alternate sides on larger screens */}
-              <style jsx>{`
-                @media (min-width: 768px) {
-                  .relative:nth-child(even) > div:first-child {
-                    order: 3;
-                    text-align: left;
-                    padding-left: 2rem;
-                    padding-right: 0;
-                  }
-                  .relative:nth-child(even) > div:last-child {
-                    order: 1;
-                    padding-right: 2rem;
-                    padding-left: 0;
-                  }
-                }
-              `}</style>
-            </div>
-          ))}
+            ))}
+          </div>
         </div>
       </div>
     </section>
