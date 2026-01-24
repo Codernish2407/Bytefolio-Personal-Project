@@ -53,7 +53,7 @@ export const experiences: Experience[] = [
     description: [
       'Edited promotional and short-form videos using CapCut and collaborated with the media team.',
     ],
-    certificateUrl: 'https://freeimage.host/i/f6q9Aan',
+    certificateUrl: 'https://iili.io/f6q9Aan.png',
   },
   {
     role: 'Email Marketing Intern',

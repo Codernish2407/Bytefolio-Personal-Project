@@ -24,7 +24,7 @@ export function Hero() {
                 <ArrowDown className="ml-2 h-5 w-5" />
               </Button>
             </a>
-            <a href="https://freeimage.host/i/f6fyKzl" target="_blank" rel="noopener noreferrer">
+            <a href="https://iili.io/f6fyKzl.png" target="_blank" rel="noopener noreferrer">
               <Button size="lg" variant="outline" suppressHydrationWarning>
                 View Resume
                 <FileText className="ml-2 h-5 w-5" />
