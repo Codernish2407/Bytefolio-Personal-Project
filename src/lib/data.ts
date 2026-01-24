@@ -62,7 +62,7 @@ export const experiences: Experience[] = [
     description: [
       'Designed email content, managed formatting, and assisted with outreach campaigns.',
     ],
-    certificateUrl: 'https://iili.io/f6qdNtf.png',
+    certificateUrl: 'https://iili.io/f6qBxO7.png',
   },
   {
     role: 'Video Editor',

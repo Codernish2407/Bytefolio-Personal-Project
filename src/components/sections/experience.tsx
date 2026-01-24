@@ -49,11 +49,11 @@ export function Experience() {
                         <DialogTrigger asChild>
                           <Button variant="outline" size="sm">View Certificate</Button>
                         </DialogTrigger>
-                        <DialogContent className="max-w-3xl">
+                        <DialogContent className="max-w-4xl">
                           <DialogHeader>
                             <DialogTitle>{exp.company} - Certificate</DialogTitle>
                           </DialogHeader>
-                          <div className="relative aspect-[8/11] mt-4">
+                          <div className="relative aspect-video mt-4">
                             <Image
                               src={exp.certificateUrl}
                               alt={`Certificate for ${exp.role} at ${exp.company}`}
