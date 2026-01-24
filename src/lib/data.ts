@@ -1,4 +1,4 @@
-import type { Project, Skill, Experience, Achievement, SocialLink } from './types';
+import type { Project, Skill, Experience, Achievement, SocialLink, Certificate } from './types';
 import { Github, Linkedin } from 'lucide-react';
 
 export const about = {
@@ -87,9 +87,9 @@ export const achievements: Achievement[] = [
     description: 'Participated in multiple hackathons, receiving strong feedback from judges and placing among top potential teams.',
     year: '2025-2026',
     certificates: [
-      { title: 'DevsHouse Hackathon', issuer: 'DevsHouse', type: 'Hackathon', url: 'https://iili.io/f6qYG8F.png' },
-      { title: 'Hack-A-Thon 5.0', issuer: 'Lovely Professional University', type: 'Hackathon', url: 'https://iili.io/f6qYEa1.png' },
-      { title: 'Imaginex Hackathon', issuer: 'GDSC LPU', type: 'Hackathon', url: 'https://iili.io/f6qYMyg.png' },
+      { title: 'DevsHouse Hackathon', url: 'https://iili.io/f6qYG8F.png' },
+      { title: 'Hack-A-Thon 5.0', url: 'https://iili.io/f6qYEa1.png' },
+      { title: 'Imaginex Hackathon', url: 'https://iili.io/f6qYMyg.png' },
     ]
   },
   {
@@ -97,11 +97,11 @@ export const achievements: Achievement[] = [
     description: 'A collection of certifications and awards recognizing excellence in academics and technical skills.',
     year: '2025-2026',
     certificates: [
-      { title: 'Academic Excellence Award', issuer: 'Vasant Kanya Inter College', type: 'Award', url: 'https://iili.io/f6qlWue.png' },
-      { title: 'Outstanding Performance Award', issuer: 'Vasant Kanya Inter College', type: 'Award', url: 'https://iili.io/f6qlwnj.png' },
-      { title: 'Data Visualization Job Simulation', issuer: 'Tata Forage', type: 'Job Simulation', url: 'https://iili.io/f6qlhZb.png' },
-      { title: 'Basic Frontend Development', issuer: 'Skill India', type: 'Certification', url: 'https://iili.io/f6qlXwu.png' },
-      { title: 'Basic Data Analysis', issuer: 'Private Institute', type: 'Certification', url: 'https://iili.io/f6qlNMx.png' },
+      { title: 'Academic Excellence Award', url: 'https://iili.io/f6qlWue.png' },
+      { title: 'Outstanding Performance Award', url: 'https://iili.io/f6qlwnj.png' },
+      { title: 'Data Visualization Job Simulation', url: 'https://iili.io/f6qlhZb.png' },
+      { title: 'Basic Frontend Development', url: 'https://iili.io/f6qlXwu.png' },
+      { title: 'Basic Data Analysis', url: 'https://iili.io/f6qlNMx.png' },
     ]
   },
 ];

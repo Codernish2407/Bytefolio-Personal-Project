@@ -38,14 +38,12 @@ export type Experience = {
 
 export type Certificate = {
   title: string;
-  issuer: string;
-  type: 'Hackathon' | 'Certification' | 'Award' | 'Job Simulation';
   url: string;
 }
 
 export type Achievement = {
   title: string;
-  description: string | string[];
+  description: string;
   year: string;
   certificates?: Certificate[];
 };
