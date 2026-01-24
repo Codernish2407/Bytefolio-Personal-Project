@@ -30,6 +30,8 @@ export const skills: Skill[] = [
   { name: 'CSS', category: 'Languages' },
   { name: 'JavaScript', category: 'Languages' },
   { name: 'GitHub', category: 'Tools & Platforms' },
+  { name: 'Database Management Systems (DBMS)', category: 'CS Fundamentals' },
+  { name: 'Software Engineering Fundamentals', category: 'CS Fundamentals' },
 ];
 
 export const projects: Project[] = [
