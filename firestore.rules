@@ -150,18 +150,6 @@ service cloud.firestore {
     }
 
     /**
-     * @description Publicly exposes projects for the portfolio.
-     * @path /projects/{projectId}
-     * @allow (read) Any user, including anonymous visitors, can view projects.
-     * @deny (write) No one can write to the projects collection directly through the client.
-     * @principle Allows public read access for portfolio items but restricts writes.
-     */
-    match /projects/{projectId} {
-      allow read: if true;
-      allow write: if false;
-    }
-
-    /**
      * @description Manages submissions from the public contact form.
      * @path /contact_form_submissions/{submissionId}
      * @allow (create) Any user, including anonymous visitors, submitting the contact form.

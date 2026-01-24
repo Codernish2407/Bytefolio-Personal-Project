@@ -246,12 +246,6 @@
     ]
   },
   "firestore": {
-    "/projects/{projectId}": {
-      "schema": {
-        "$ref": "#/backend/entities/Project"
-      },
-      "description": "Stores all projects for the portfolio."
-    },
     "structure": [
       {
         "path": "/users/{userId}/profile",
@@ -369,4 +363,3 @@
     "reasoning": "The Firestore structure is designed to manage user profiles, projects, skills, experiences, achievements, and contact form submissions for a personal portfolio website. It prioritizes authorization independence by leveraging path-based ownership for user-specific data and segregates data with different access requirements. The structure will look like `/users/{userId}/profile`, `/users/{userId}/projects/{projectId}` and so on. This structure provides clear ownership. Contact form submissions are stored in a separate collection (`/contact_form_submissions`) to allow for different security rules, in this case only accessible to administrators. All dates are stored as strings to maintain compatibility with Javascript and to enforce a predictable schema. The `Skill` entity's `projectIds` property establishes a `N:N` relationship between skills and projects. This design supports QAPs by enabling secure list operations based on ownership and role-based access control, implemented via dedicated collections."
   }
 }
-    
