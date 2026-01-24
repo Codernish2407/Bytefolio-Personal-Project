@@ -1,12 +1,6 @@
 {
   "placeholderImages": [
     {
-      "id": "project-1",
-      "description": "Abstract code on a screen",
-      "imageUrl": "https://images.unsplash.com/photo-1555680510-34daedadbdb1?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw4fHxhYnN0cmFjdCUyMGNvZGV8ZW58MHx8fHwxNzY5MDEyMDM0fDA&ixlib=rb-4.1.0&q=80&w=1080",
-      "imageHint": "abstract code"
-    },
-    {
       "id": "profile-picture",
       "description": "Nishtha Banerjee profile picture",
       "imageUrl": "https://iili.io/f6qoMX9.png",
@@ -14,20 +8,26 @@
     },
     {
       "id": "cert-agnivikram",
-      "description": "Agnivikram Skyblaze Pvt Ltd Internship Certificate",
-      "imageUrl": "https://images.unsplash.com/photo-1715173679369-18006e84d6a8?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw3fHxjZXJ0aWZpY2F0ZSUyMGRvY3VtZW50fGVufDB8fHx8MTc2OTE1MzgxNnww&ixlib=rb-4.1.0&q=80&w=1080",
+      "description": "Agnivikrama Skyblaze Pvt Ltd Internship Certificate",
+      "imageUrl": "https://iili.io/f6q9Aan.png",
       "imageHint": "certificate document"
     },
     {
       "id": "cert-gema",
       "description": "Gema Edu Pvt Ltd Internship Certificate",
-      "imageUrl": "https://images.unsplash.com/photo-1579642984417-0c00620f8e94?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw5fHxjZXJ0aWZpY2F0ZSUyMGRvY3VtZW50fGVufDB8fHx8MTc2OTE1MzgxNnww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageUrl": "https://iili.io/f6qBxO7.png",
       "imageHint": "certificate document"
     },
     {
       "id": "cert-yathaarth",
       "description": "Yathaarth Sangam Foundation Internship Certificate",
-      "imageUrl": "https://images.unsplash.com/photo-1657114162943-04988ff671d9?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw4fHxjZXJ0aWZpY2F0ZSUyMGRvY3VtZW50fGVufDB8fHx8MTc2OTE1MzgxNnww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageUrl": "https://iili.io/f6q29Ag.png",
+      "imageHint": "certificate document"
+    },
+    {
+      "id": "cert-yathaarth-2",
+      "description": "Yathaarth Sangam Foundation Internship Certificate 2",
+      "imageUrl": "https://iili.io/f6q2JDJ.png",
       "imageHint": "certificate document"
     }
   ]

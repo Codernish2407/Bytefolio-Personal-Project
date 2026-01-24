@@ -25,7 +25,7 @@ export type Project = {
   techStack: string[];
   githubUrl: string;
   liveUrl?: string;
-  image: string;
+  images: string[];
 };
 
 export type Experience = {

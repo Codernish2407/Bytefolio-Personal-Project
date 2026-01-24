@@ -1,5 +1,4 @@
 import type { Project, Skill, Experience, Achievement, SocialLink } from './types';
-import { PlaceHolderImages } from './placeholder-images';
 import { Github, Linkedin } from 'lucide-react';
 
 export const about = {
@@ -41,7 +40,11 @@ export const projects: Project[] = [
     description: 'Developed a productivity-focused website using HTML, CSS, and JavaScript. Backend concepts supported using AI tools like Firebase Studio. Designed to help students manage distractions and improve focus. Type: Hackathon Project',
     techStack: ['HTML', 'CSS', 'JavaScript', 'Firebase Studio'],
     githubUrl: 'https://github.com/Codernish2407',
-    image: PlaceHolderImages.find(p => p.id === 'project-1')?.imageUrl || '',
+    images: [
+      'https://iili.io/f6quEPt.png',
+      'https://iili.io/f6qA6rX.png',
+      'https://iili.io/f6qAi2n.png',
+    ]
   },
 ];
 

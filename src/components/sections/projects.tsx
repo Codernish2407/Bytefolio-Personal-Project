@@ -5,6 +5,7 @@ import { Badge } from '@/components/ui/badge';
 import { Github, ExternalLink } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { projects } from '@/lib/data';
+import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from '@/components/ui/carousel';
 
 export function Projects() {
   return (
@@ -21,16 +22,32 @@ export function Projects() {
             {projects.map((project) => (
               <Card key={project.id} className="glass-card flex flex-col overflow-hidden">
                 <CardHeader>
-                  <div className="aspect-[3/2] relative mb-4">
-                    <Image
-                      src={project.image}
-                      alt={project.title}
-                      fill
-                      className="object-cover rounded-t-lg"
-                      data-ai-hint="project screenshot"
-                    />
-                  </div>
-                  <CardTitle>{project.title}</CardTitle>
+                  {project.images && project.images.length > 0 && (
+                    <Carousel className="w-full max-w-full">
+                      <CarouselContent>
+                        {project.images.map((image, index) => (
+                          <CarouselItem key={index}>
+                            <div className="aspect-[3/2] relative">
+                              <Image
+                                src={image}
+                                alt={`${project.title} screenshot ${index + 1}`}
+                                fill
+                                className="object-cover rounded-t-lg"
+                                data-ai-hint="project screenshot"
+                              />
+                            </div>
+                          </CarouselItem>
+                        ))}
+                      </CarouselContent>
+                      {project.images.length > 1 && (
+                        <>
+                          <CarouselPrevious className="absolute left-2 top-1/2 -translate-y-1/2" />
+                          <CarouselNext className="absolute right-2 top-1/2 -translate-y-1/2" />
+                        </>
+                      )}
+                    </Carousel>
+                  )}
+                  <CardTitle className="pt-4">{project.title}</CardTitle>
                 </CardHeader>
                 <CardContent className="flex-grow">
                   <CardDescription>{project.description}</CardDescription>
