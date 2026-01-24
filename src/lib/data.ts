@@ -19,7 +19,7 @@ export const about = {
     },
   ],
   interests: 'Frontend Development, Video Editing, Web Development, Programming',
-  focus: 'Building impactful tech solutions and contributing to projects that drive positive change.',
+  focus: 'Building impactful tech solutions and contributing to projects that drive positive change in the tech landscape.',
 };
 
 export const skills: Skill[] = [
@@ -83,30 +83,25 @@ export const experiences: Experience[] = [
 
 export const achievements: Achievement[] = [
   {
-    title: 'Hackathon Participant',
-    description: 'Received strong feedback from judges (Top 5 potential) and participation certificates.',
+    title: 'Hackathons',
+    description: 'Participated in multiple hackathons, receiving strong feedback from judges and placing among top potential teams.',
     year: '2025-2026',
-    certificateUrls: [
-      'https://iili.io/f6qYG8F.png',
-      'https://iili.io/f6qYEa1.png',
-      'https://iili.io/f6qYMyg.png',
+    certificates: [
+      { title: 'DevsHouse Hackathon', issuer: 'DevsHouse', type: 'Hackathon', url: 'https://iili.io/f6qYG8F.png' },
+      { title: 'Hack-A-Thon 5.0', issuer: 'Lovely Professional University', type: 'Hackathon', url: 'https://iili.io/f6qYEa1.png' },
+      { title: 'Imaginex Hackathon', issuer: 'GDSC LPU', type: 'Hackathon', url: 'https://iili.io/f6qYMyg.png' },
     ]
   },
   {
-    title: 'Achievements',
-    description: [
-      'Awarded 2 certificates for outstanding performance in Class 12.',
-      'Completed the Tata Forage Data Visualization Job Simulation.',
-      'Earned the Skill India Certificate for Basic Frontend Development.',
-      'Awarded the Basic Data Analysis Certificate.',
-    ],
+    title: 'Certifications & Awards',
+    description: 'A collection of certifications and awards recognizing excellence in academics and technical skills.',
     year: '2025-2026',
-    certificateUrls: [
-      'https://iili.io/f6qlWue.png',
-      'https://iili.io/f6qlwnj.png',
-      'https://iili.io/f6qlhZb.png',
-      'https://iili.io/f6qlXwu.png',
-      'https://iili.io/f6qlNMx.png',
+    certificates: [
+      { title: 'Academic Excellence Award', issuer: 'Vasant Kanya Inter College', type: 'Award', url: 'https://iili.io/f6qlWue.png' },
+      { title: 'Outstanding Performance Award', issuer: 'Vasant Kanya Inter College', type: 'Award', url: 'https://iili.io/f6qlwnj.png' },
+      { title: 'Data Visualization Job Simulation', issuer: 'Tata Forage', type: 'Job Simulation', url: 'https://iili.io/f6qlhZb.png' },
+      { title: 'Basic Frontend Development', issuer: 'Skill India', type: 'Certification', url: 'https://iili.io/f6qlXwu.png' },
+      { title: 'Basic Data Analysis', issuer: 'Private Institute', type: 'Certification', url: 'https://iili.io/f6qlNMx.png' },
     ]
   },
 ];

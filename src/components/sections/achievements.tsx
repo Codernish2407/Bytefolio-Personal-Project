@@ -1,7 +1,7 @@
 
 import { achievements } from '@/lib/data';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { Trophy, CheckCircle } from 'lucide-react';
+import { Trophy, CheckCircle, Award, Eye } from 'lucide-react';
 import {
   Dialog,
   DialogContent,
@@ -11,7 +11,6 @@ import {
 } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
 import Image from "next/image";
-import { cn } from '@/lib/utils';
 
 export function Achievements() {
   return (
@@ -20,9 +19,9 @@ export function Achievements() {
         <h2 className="text-3xl font-bold tracking-tight text-center sm:text-4xl mb-12">
           Achievements & Hackathons
         </h2>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-start">
           {achievements.map((achievement, index) => (
-            <Card key={index} className="glass-card text-center flex flex-col">
+            <Card key={index} className="glass-card text-center flex flex-col h-full">
               <CardHeader>
                 <div className="flex justify-center mb-4">
                   <div className="p-3 rounded-full bg-accent/20">
@@ -31,50 +30,57 @@ export function Achievements() {
                 </div>
                 <CardTitle>{achievement.title}</CardTitle>
                 <p className="text-sm font-semibold text-primary">{achievement.year}</p>
-              </CardHeader>
-              <CardContent className="flex-grow">
                 {Array.isArray(achievement.description) ? (
-                  <ul className="space-y-2 text-left">
+                  <ul className="space-y-2 text-left text-sm text-muted-foreground pt-2">
                     {achievement.description.map((item, i) => (
-                      <li key={i} className="flex items-start gap-2 text-sm text-muted-foreground">
+                      <li key={i} className="flex items-start gap-2">
                         <CheckCircle className="h-4 w-4 mt-1 text-accent flex-shrink-0" />
                         <span>{item}</span>
                       </li>
                     ))}
                   </ul>
                 ) : (
-                  <p className="text-muted-foreground">{achievement.description}</p>
+                  <p className="text-sm text-muted-foreground pt-2">{achievement.description}</p>
+                )}
+              </CardHeader>
+              <CardContent className="flex-grow flex flex-col gap-4 text-left pt-0">
+                {achievement.certificates && achievement.certificates.length > 0 && (
+                  <ul className="space-y-3">
+                    {achievement.certificates.map((cert, certIndex) => (
+                      <li key={certIndex} className="bg-card/50 p-3 rounded-lg flex items-center justify-between gap-4 border border-border/20">
+                        <div className="flex items-center gap-4">
+                          <Award className="h-6 w-6 text-primary flex-shrink-0" />
+                          <div className="text-left">
+                            <p className="font-semibold text-sm">{cert.title}</p>
+                            <p className="text-xs text-muted-foreground">{cert.issuer} - {cert.type}</p>
+                          </div>
+                        </div>
+                        <Dialog>
+                          <DialogTrigger asChild>
+                            <Button variant="ghost" size="icon" aria-label="View Certificate">
+                              <Eye className="h-5 w-5" />
+                            </Button>
+                          </DialogTrigger>
+                          <DialogContent className="max-w-5xl w-full h-[90vh]">
+                            <DialogHeader>
+                              <DialogTitle>{cert.title}</DialogTitle>
+                            </DialogHeader>
+                            <div className="relative w-full h-full mt-4">
+                              <Image
+                                src={cert.url}
+                                alt={`Certificate for ${cert.title}`}
+                                fill
+                                className="object-contain"
+                                data-ai-hint="certificate document"
+                              />
+                            </div>
+                          </DialogContent>
+                        </Dialog>
+                      </li>
+                    ))}
+                  </ul>
                 )}
               </CardContent>
-              {achievement.certificateUrls && (
-                <div className="p-6 pt-0 mt-auto">
-                  <Dialog>
-                    <DialogTrigger asChild>
-                      <Button variant="outline" size="sm">
-                        View Certificates
-                      </Button>
-                    </DialogTrigger>
-                    <DialogContent className="max-w-6xl">
-                      <DialogHeader>
-                        <DialogTitle>{achievement.title} - Certificates</DialogTitle>
-                      </DialogHeader>
-                      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 mt-4">
-                        {achievement.certificateUrls.map((url, i) => (
-                          <div key={i} className="relative aspect-[8/11]">
-                            <Image
-                              src={url}
-                              alt={`Certificate for ${achievement.title} (${i + 1})`}
-                              fill
-                              className="object-contain"
-                              data-ai-hint="certificate document"
-                            />
-                          </div>
-                        ))}
-                      </div>
-                    </DialogContent>
-                  </Dialog>
-                </div>
-              )}
             </Card>
           ))}
         </div>
