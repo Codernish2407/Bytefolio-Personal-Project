@@ -1,6 +1,6 @@
 
 import { achievements } from '@/lib/data';
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { Card, CardContent, CardHeader, CardTitle, CardFooter } from '@/components/ui/card';
 import { Trophy } from 'lucide-react';
 import {
   Dialog,
@@ -46,19 +46,26 @@ export function Achievements() {
                         </DialogHeader>
                         <div className={cn(
                           "grid grid-cols-1 gap-4 mt-4",
-                          achievement.certificates.length > 1 && "md:grid-cols-2",
+                          "sm:grid-cols-2",
                           achievement.certificates.length > 2 && "lg:grid-cols-3"
                         )}>
                           {achievement.certificates.map((cert, i) => (
-                            <div key={i} className="relative aspect-[8/11]">
-                              <Image
-                                src={cert.url}
-                                alt={`Certificate for ${achievement.title} (${i + 1})`}
-                                fill
-                                className="object-contain"
-                                data-ai-hint="certificate document"
-                              />
-                            </div>
+                            <Card key={i} className="glass-card overflow-hidden">
+                              <CardContent className="p-2">
+                                <div className="relative aspect-[8/11]">
+                                  <Image
+                                    src={cert.url}
+                                    alt={cert.title}
+                                    fill
+                                    className="object-contain rounded-md"
+                                    data-ai-hint="certificate document"
+                                  />
+                                </div>
+                              </CardContent>
+                              <CardFooter className="p-3 bg-card/50">
+                                <p className="text-xs text-muted-foreground w-full text-center truncate">{cert.title}</p>
+                              </CardFooter>
+                            </Card>
                           ))}
                         </div>
                       </DialogContent>
