@@ -2,6 +2,8 @@
 
 import { analyzeContactFormSubmission } from '@/ai/flows/contact-form-pii-reasoning';
 import { contactSchema, type ContactFormData } from '@/lib/schemas';
+import { initializeFirebase } from '@/firebase';
+import { collection, doc, setDoc } from 'firebase/firestore';
 
 export async function submitContactForm(data: ContactFormData) {
   const validatedFields = contactSchema.safeParse(data);
@@ -15,19 +17,23 @@ export async function submitContactForm(data: ContactFormData) {
   }
 
   try {
+    const { firestore } = initializeFirebase();
     const { name, email, message } = validatedFields.data;
 
     const piiAnalysis = await analyzeContactFormSubmission({ message });
 
-    // Simulate saving to database
-    console.log("New Contact Form Submission Received:");
-    console.log("Name:", name);
-    console.log("Email:", email);
-    console.log("Message:", message);
-    console.log("---");
-    console.log("PII Analysis Result:", piiAnalysis.piiSummary);
-    console.log("---");
-
+    // Save to database
+    const submissionCollection = collection(firestore, 'contact_form_submissions');
+    const newSubmissionRef = doc(submissionCollection);
+    
+    await setDoc(newSubmissionRef, {
+      id: newSubmissionRef.id,
+      name,
+      email,
+      message,
+      submissionDate: new Date().toISOString(),
+      piiSummary: piiAnalysis.piiSummary,
+    });
 
     return { success: true, message: 'Message sent successfully!' };
   } catch (error) {

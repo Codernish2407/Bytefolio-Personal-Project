@@ -228,6 +228,10 @@
           "type": "string",
           "description": "Date and time of the submission.",
           "format": "date-time"
+        },
+        "piiSummary": {
+          "type": "string",
+          "description": "A summary of the types of personally identifiable information (PII) detected in the message."
         }
       },
       "required": [
