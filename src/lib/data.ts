@@ -62,7 +62,7 @@ export const experiences: Experience[] = [
     description: [
       'Designed email content, managed formatting, and assisted with outreach campaigns.',
     ],
-    certificateUrl: PlaceHolderImages.find(p => p.id === 'cert-gema')?.imageUrl,
+    certificateUrl: 'https://iili.io/f6qdNtf.png',
   },
   {
     role: 'Video Editor',
