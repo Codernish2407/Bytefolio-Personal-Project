@@ -18,34 +18,11 @@ const navLinks: NavLink[] = [
 ];
 
 export function Header() {
-  const [isScrolled, setIsScrolled] = useState(false);
-  const [activeSection, setActiveSection] = useState<string>('');
   const isMobile = useIsMobile();
   const [hasMounted, setHasMounted] = useState(false);
 
   useEffect(() => {
     setHasMounted(true);
-  }, []);
-
-  useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 10);
-      
-      const sections = navLinks.map(link => document.querySelector(link.href) as HTMLElement).filter(Boolean);
-      let currentSection = '';
-
-      sections.forEach(section => {
-        const sectionTop = section.offsetTop;
-        if (window.scrollY >= sectionTop - 100) {
-          currentSection = `#${section.id}`;
-        }
-      });
-      
-      setActiveSection(currentSection);
-    };
-
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
   const handleScrollTo = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
@@ -69,8 +46,7 @@ export function Header() {
           className={cn(
             'px-3 py-2 text-sm font-medium rounded-md transition-colors',
             'text-muted-foreground hover:text-foreground',
-            'focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 focus:ring-offset-background',
-            activeSection === link.href ? 'text-foreground bg-accent/10' : ''
+            'focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 focus:ring-offset-background'
           )}
         >
           {link.name}
@@ -82,8 +58,8 @@ export function Header() {
   return (
     <header
       className={cn(
-        'sticky top-0 z-50 w-full transition-all duration-300',
-        isScrolled ? 'border-b border-border/60 bg-background/80 backdrop-blur-lg' : ''
+        'sticky top-0 z-50 w-full',
+        'border-b border-border/60 bg-background/80 backdrop-blur-lg'
       )}
     >
       <div className="container mx-auto flex h-16 max-w-7xl items-center justify-between px-4">
