@@ -74,33 +74,19 @@ export const experiences: Experience[] = [
 
 export const achievements: Achievement[] = [
   {
-    title: 'Academic Excellence',
-    description: 'Awarded 2 certificates for outstanding performance in Class 12.',
-    year: 2025,
-  },
-  {
     title: 'Hackathon Participant',
-    description: 'Received strong feedback from judges (Top 5 potential) and a participation certificate.',
+    description: 'Received strong feedback from judges (Top 5 potential) and participation certificates.',
     year: 2025,
   },
   {
-    title: 'Data Visualization Simulation',
-    description: 'Completed the Tata Forage Data Visualization Job Simulation.',
-    year: 2025,
-  },
-  {
-    title: 'Frontend Development',
-    description: 'Earned the Skill India Certificate for Basic Frontend Development.',
-    year: 2025,
-  },
-  {
-    title: 'Data Analysis',
-    description: 'Awarded the Basic Data Analysis Certificate.',
-    year: 2025,
-  },
-  {
-    title: 'Internship Completions',
-    description: 'Received letters of completion for all three internship roles.',
+    title: 'Achievements',
+    description: [
+      'Awarded 2 certificates for outstanding performance in Class 12.',
+      'Completed the Tata Forage Data Visualization Job Simulation.',
+      'Earned the Skill India Certificate for Basic Frontend Development.',
+      'Awarded the Basic Data Analysis Certificate.',
+      'Received letters of completion for all three internship roles.',
+    ],
     year: 2025,
   },
 ];

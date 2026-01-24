@@ -14,7 +14,7 @@ export type SocialLink = {
 export type SkillCategory = 'Languages' | 'Frameworks & Libraries' | 'Tools & Platforms' | 'CS Fundamentals';
 
 export type Skill = {
-  name: string;
+  name:string;
   category: SkillCategory;
 };
 
@@ -37,6 +37,6 @@ export type Experience = {
 
 export type Achievement = {
   title: string;
-  description: string;
+  description: string | string[];
   year: number;
 };

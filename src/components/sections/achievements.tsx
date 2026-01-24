@@ -1,6 +1,6 @@
 import { achievements } from '@/lib/data';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { Trophy } from 'lucide-react';
+import { Trophy, CheckCircle } from 'lucide-react';
 
 export function Achievements() {
   return (
@@ -22,7 +22,18 @@ export function Achievements() {
                 <p className="text-sm font-semibold text-primary">{achievement.year}</p>
               </CardHeader>
               <CardContent>
-                <p className="text-muted-foreground">{achievement.description}</p>
+                {Array.isArray(achievement.description) ? (
+                  <ul className="space-y-2 text-left">
+                    {achievement.description.map((item, i) => (
+                      <li key={i} className="flex items-start gap-2 text-sm text-muted-foreground">
+                        <CheckCircle className="h-4 w-4 mt-1 text-accent flex-shrink-0" />
+                        <span>{item}</span>
+                      </li>
+                    ))}
+                  </ul>
+                ) : (
+                  <p className="text-muted-foreground">{achievement.description}</p>
+                )}
               </CardContent>
             </Card>
           ))}
