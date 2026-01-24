@@ -44,7 +44,7 @@ export function About() {
             </CardHeader>
             <CardContent className="space-y-4 text-muted-foreground">
               <p>
-                Motivated first-year B.Tech CSE student with hands-on experience from multiple internships, demonstrating a solid foundation in web development and programming. Proficient in frontend development and video editing, with a passion for creating impactful tech solutions. Committed to continuous learning and professional growth, eager to leverage skills in dynamic environments that foster innovation and collaboration. Enthusiastic about contributing to projects that drive positive change in the tech landscape.
+                Motivated first-year B.Tech CSE student with hands-on experience from multiple internships, demonstrating a solid foundation in web development and programming. Skilled in frontend development and video editing, with a passion for creating impactful tech solutions. Committed to continuous learning and professional growth, eager to leverage skills in dynamic environments that foster innovation and collaboration. Enthusiastic about contributing to projects that drive positive change in the tech landscape.
               </p>
               <div>
                 <h4 className="font-semibold text-foreground mb-2">Education:</h4>
