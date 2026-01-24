@@ -32,7 +32,7 @@ export function Projects() {
                                 src={image}
                                 alt={`${project.title} screenshot ${index + 1}`}
                                 fill
-                                className="object-cover rounded-t-lg"
+                                className="object-contain rounded-t-lg"
                                 data-ai-hint="project screenshot"
                               />
                             </div>
