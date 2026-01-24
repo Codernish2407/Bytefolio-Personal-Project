@@ -12,9 +12,9 @@ export default function Home() {
       <Hero />
       <div className="relative isolate container px-4 mx-auto flex flex-col gap-16 md:gap-24">
         <div aria-hidden="true" className="absolute inset-0 -z-10 overflow-hidden">
-          <div className="absolute top-[10rem] -left-[10rem] w-96 h-96 bg-primary/5 rounded-full blur-3xl animate-blob-spin"></div>
+          <div className="absolute top-[5rem] -left-[20rem] w-[56rem] h-[56rem] bg-primary/10 rounded-full blur-3xl animate-blob-spin"></div>
           <div 
-            className="absolute top-[50rem] -right-[10rem] w-96 h-96 bg-accent/5 rounded-full blur-3xl animate-blob-spin" 
+            className="absolute top-[45rem] -right-[20rem] w-[56rem] h-[56rem] bg-accent/10 rounded-full blur-3xl animate-blob-spin" 
             style={{animationDelay: '-10s'}}>
           </div>
         </div>
