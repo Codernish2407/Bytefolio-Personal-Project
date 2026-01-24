@@ -86,6 +86,11 @@ export const achievements: Achievement[] = [
     title: 'Hackathon Participant',
     description: 'Received strong feedback from judges (Top 5 potential) and participation certificates.',
     year: 2025,
+    certificateUrls: [
+      'https://iili.io/f6qYG8F.png',
+      'https://iili.io/f6qYEa1.png',
+      'https://iili.io/f6qYMyg.png',
+    ]
   },
   {
     title: 'Achievements',

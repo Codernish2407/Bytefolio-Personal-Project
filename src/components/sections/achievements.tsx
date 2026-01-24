@@ -1,6 +1,16 @@
 import { achievements } from '@/lib/data';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Trophy, CheckCircle } from 'lucide-react';
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog";
+import { Button } from "@/components/ui/button";
+import Image from "next/image";
+import { cn } from '@/lib/utils';
 
 export function Achievements() {
   return (
@@ -11,7 +21,7 @@ export function Achievements() {
         </h2>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {achievements.map((achievement, index) => (
-            <Card key={index} className="glass-card text-center">
+            <Card key={index} className="glass-card text-center flex flex-col">
               <CardHeader>
                 <div className="flex justify-center mb-4">
                   <div className="p-3 rounded-full bg-accent/20">
@@ -21,7 +31,7 @@ export function Achievements() {
                 <CardTitle>{achievement.title}</CardTitle>
                 <p className="text-sm font-semibold text-primary">{achievement.year}</p>
               </CardHeader>
-              <CardContent>
+              <CardContent className="flex-grow">
                 {Array.isArray(achievement.description) ? (
                   <ul className="space-y-2 text-left">
                     {achievement.description.map((item, i) => (
@@ -35,6 +45,35 @@ export function Achievements() {
                   <p className="text-muted-foreground">{achievement.description}</p>
                 )}
               </CardContent>
+              {achievement.certificateUrls && (
+                <div className="p-6 pt-0 mt-auto">
+                  <Dialog>
+                    <DialogTrigger asChild>
+                      <Button variant="outline" size="sm">
+                        View Certificates
+                      </Button>
+                    </DialogTrigger>
+                    <DialogContent className="max-w-6xl">
+                      <DialogHeader>
+                        <DialogTitle>{achievement.title} - Certificates</DialogTitle>
+                      </DialogHeader>
+                      <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mt-4">
+                        {achievement.certificateUrls.map((url, i) => (
+                          <div key={i} className="relative aspect-[8/11]">
+                            <Image
+                              src={url}
+                              alt={`Certificate for ${achievement.title} (${i + 1})`}
+                              fill
+                              className="object-contain"
+                              data-ai-hint="certificate document"
+                            />
+                          </div>
+                        ))}
+                      </div>
+                    </DialogContent>
+                  </Dialog>
+                </div>
+              )}
             </Card>
           ))}
         </div>
