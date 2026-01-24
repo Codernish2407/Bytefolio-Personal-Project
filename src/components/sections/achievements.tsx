@@ -45,9 +45,8 @@ export function Achievements() {
                           <DialogTitle>{achievement.title} - Certificates</DialogTitle>
                         </DialogHeader>
                         <div className={cn(
-                          "grid grid-cols-1 gap-4 mt-4",
-                          "sm:grid-cols-2",
-                          achievement.certificates.length > 2 && "lg:grid-cols-3"
+                          "grid grid-cols-1 gap-2 mt-4",
+                          "md:grid-cols-3"
                         )}>
                           {achievement.certificates.map((cert, i) => (
                             <Card key={i} className="glass-card overflow-hidden">
@@ -55,16 +54,13 @@ export function Achievements() {
                                 <div className="relative aspect-[8/11]">
                                   <Image
                                     src={cert.url}
-                                    alt={cert.title}
+                                    alt={`${achievement.title} Certificate ${i + 1}`}
                                     fill
                                     className="object-contain rounded-md"
                                     data-ai-hint="certificate document"
                                   />
                                 </div>
                               </CardContent>
-                              <CardFooter className="p-3 bg-card/50">
-                                <p className="text-xs text-muted-foreground w-full text-center truncate">{cert.title}</p>
-                              </CardFooter>
                             </Card>
                           ))}
                         </div>
