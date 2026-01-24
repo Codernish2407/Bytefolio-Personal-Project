@@ -12,6 +12,7 @@ import {
 import { Button } from "@/components/ui/button";
 import Image from "next/image";
 import { cn } from '@/lib/utils';
+import { ScrollArea } from '@/components/ui/scroll-area';
 
 export function Achievements() {
   return (
@@ -40,30 +41,32 @@ export function Achievements() {
                       <DialogTrigger asChild>
                         <Button variant="outline">View Certificates</Button>
                       </DialogTrigger>
-                      <DialogContent className={cn("max-w-4xl", achievement.certificates.length > 2 && "lg:max-w-6xl")}>
-                        <DialogHeader>
+                      <DialogContent className={cn("p-0 max-w-4xl", achievement.certificates.length > 2 && "lg:max-w-6xl")}>
+                        <DialogHeader className="p-6 pb-2">
                           <DialogTitle>{achievement.title} - Certificates</DialogTitle>
                         </DialogHeader>
-                        <div className={cn(
-                          "grid grid-cols-1 gap-2 mt-4",
-                          "sm:grid-cols-2 md:grid-cols-3"
-                        )}>
-                          {achievement.certificates.map((cert, i) => (
-                            <Card key={i} className="glass-card overflow-hidden">
-                              <CardContent className="p-2">
-                                <div className="relative aspect-[8/11]">
-                                  <Image
-                                    src={cert.url}
-                                    alt={`${achievement.title} Certificate ${i + 1}`}
-                                    fill
-                                    className="object-contain rounded-md"
-                                    data-ai-hint="certificate document"
-                                  />
-                                </div>
-                              </CardContent>
-                            </Card>
-                          ))}
-                        </div>
+                        <ScrollArea className="max-h-[80vh]">
+                          <div className={cn(
+                            "grid grid-cols-1 gap-4 p-6 pt-4",
+                            "sm:grid-cols-2 md:grid-cols-3"
+                          )}>
+                            {achievement.certificates.map((cert, i) => (
+                              <Card key={i} className="glass-card overflow-hidden">
+                                <CardContent className="p-2">
+                                  <div className="relative aspect-[8/11]">
+                                    <Image
+                                      src={cert.url}
+                                      alt={`${achievement.title} Certificate ${i + 1}`}
+                                      fill
+                                      className="object-contain rounded-md"
+                                      data-ai-hint="certificate document"
+                                    />
+                                  </div>
+                                </CardContent>
+                              </Card>
+                            ))}
+                          </div>
+                        </ScrollArea>
                       </DialogContent>
                     </Dialog>
                   </div>

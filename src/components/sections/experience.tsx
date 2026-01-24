@@ -12,6 +12,7 @@ import {
 import { Button } from "@/components/ui/button";
 import Image from "next/image";
 import { cn } from '@/lib/utils';
+import { ScrollArea } from '@/components/ui/scroll-area';
 
 export function Experience() {
   return (
@@ -33,17 +34,17 @@ export function Experience() {
 
                 <div className={cn(
                   "pl-12 md:pl-0 md:w-1/2",
-                  index % 2 !== 0 && "md:ml-auto"
+                  index % 2 !== 0 ? 'md:ml-auto md:pl-8' : 'md:pr-8'
                 )}>
                   <div className={cn(
                     "text-left",
-                    index % 2 === 0 ? 'md:text-right' : 'md:text-left'
+                     index % 2 === 0 ? 'md:text-right' : 'md:text-left'
                   )}>
                     <h3 className="text-lg font-semibold text-primary">{exp.role}</h3>
                     <p className="text-md font-medium">{exp.company}</p>
                     <p className="text-sm text-muted-foreground">{exp.duration}</p>
                   </div>
-                  <div className={cn("mt-2 p-6 rounded-lg glass-card text-left", index % 2 === 0 ? "md:mr-8" : "md:ml-0")}>
+                  <div className="mt-2 p-6 rounded-lg glass-card text-left">
                     <ul className="space-y-2">
                       {exp.description.map((item, i) => (
                         <li key={i} className="flex items-start gap-2 text-sm text-muted-foreground">
@@ -57,41 +58,45 @@ export function Experience() {
                         <Dialog>
                           <DialogTrigger asChild>
                             <Button variant="outline" size="sm">
-                              {Array.isArray(exp.certificateUrl) ? 'View Certificates' : 'View Certificate'}
+                              {Array.isArray(exp.certificateUrl) && exp.certificateUrl.length > 1 ? 'View Certificates' : 'View Certificate'}
                             </Button>
                           </DialogTrigger>
                           <DialogContent className={cn(
-                            "max-w-4xl",
-                            Array.isArray(exp.certificateUrl) && "max-w-6xl"
+                            "p-0 max-w-4xl",
+                            Array.isArray(exp.certificateUrl) && exp.certificateUrl.length > 1 && "lg:max-w-6xl"
                           )}>
-                            <DialogHeader>
-                              <DialogTitle>{exp.company} - Certificate{Array.isArray(exp.certificateUrl) ? 's' : ''}</DialogTitle>
+                            <DialogHeader className="p-6 pb-2">
+                              <DialogTitle>{exp.company} - Certificate{Array.isArray(exp.certificateUrl) && exp.certificateUrl.length > 1 ? 's' : ''}</DialogTitle>
                             </DialogHeader>
-                            {Array.isArray(exp.certificateUrl) ? (
-                              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-4">
-                                {exp.certificateUrl.map((url, i) => (
-                                  <div key={i} className="relative aspect-[8/11]">
+                            <ScrollArea className="max-h-[80vh]">
+                              <div className="p-6 pt-4">
+                                {Array.isArray(exp.certificateUrl) ? (
+                                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                                    {exp.certificateUrl.map((url, i) => (
+                                      <div key={i} className="relative aspect-[8/11]">
+                                        <Image
+                                          src={url}
+                                          alt={`Certificate for ${exp.role} at ${exp.company} (${i + 1})`}
+                                          fill
+                                          className="object-contain"
+                                          data-ai-hint="certificate document"
+                                        />
+                                      </div>
+                                    ))}
+                                  </div>
+                                ) : (
+                                  <div className="relative aspect-[8/11]">
                                     <Image
-                                      src={url}
-                                      alt={`Certificate for ${exp.role} at ${exp.company} (${i + 1})`}
+                                      src={exp.certificateUrl as string}
+                                      alt={`Certificate for ${exp.role} at ${exp.company}`}
                                       fill
                                       className="object-contain"
                                       data-ai-hint="certificate document"
                                     />
                                   </div>
-                                ))}
+                                )}
                               </div>
-                            ) : (
-                              <div className="relative aspect-[8/11] mt-4">
-                                <Image
-                                  src={exp.certificateUrl as string}
-                                  alt={`Certificate for ${exp.role} at ${exp.company}`}
-                                  fill
-                                  className="object-contain"
-                                  data-ai-hint="certificate document"
-                                />
-                              </div>
-                            )}
+                            </ScrollArea>
                           </DialogContent>
                         </Dialog>
                       </div>
