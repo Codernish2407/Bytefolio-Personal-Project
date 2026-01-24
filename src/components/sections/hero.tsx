@@ -24,7 +24,7 @@ export function Hero() {
                 <ArrowDown className="ml-2 h-5 w-5" />
               </Button>
             </a>
-            <a href="/resume.pdf" target="_blank" rel="noopener noreferrer">
+            <a href="/Nishtha_Banerjee_Resume.png" download="Nishtha_Banerjee_Resume.png">
               <Button size="lg" variant="outline">
                 Download Resume
                 <FileText className="ml-2 h-5 w-5" />
