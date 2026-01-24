@@ -82,17 +82,11 @@ export default {
           '0%': { opacity: '0' },
           '100%': { opacity: '1' },
         },
-        'blob-spin': {
-          '0%': { transform: 'rotate(0deg) scale(1)' },
-          '50%': { transform: 'rotate(180deg) scale(1.2)' },
-          '100%': { transform: 'rotate(360deg) scale(1)' },
-        },
       },
       animation: {
         'accordion-down': 'accordion-down 0.2s ease-out',
         'accordion-up': 'accordion-up 0.2s ease-out',
         'fade-in': 'fade-in 1s ease-in-out',
-        'blob-spin': 'blob-spin 25s linear infinite',
       },
     },
   },
