@@ -10,7 +10,7 @@ export function Hero() {
         <div className="animate-fade-in" style={{ animationDelay: '0.2s' }}>
           <h1 className="text-4xl font-extrabold tracking-tight sm:text-5xl md:text-6xl lg:text-7xl">
             <span className="block">Nishtha Banerjee</span>
-            <span className="block bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
+            <span className="block bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent pb-1">
               Aspiring Software Developer
             </span>
           </h1>
