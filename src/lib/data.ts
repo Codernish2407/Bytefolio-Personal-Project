@@ -48,12 +48,12 @@ export const projects: Project[] = [
 export const experiences: Experience[] = [
   {
     role: 'Video Editing Intern',
-    company: 'Agnivikram Skyblaze Pvt Ltd',
+    company: 'Ar7x (backed by Agnivikrama Skyblaze Private Limited)',
     duration: 'May 2025 – Aug 2025',
     description: [
       'Edited promotional and short-form videos using CapCut and collaborated with the media team.',
     ],
-    certificateUrl: PlaceHolderImages.find(p => p.id === 'cert-agnivikram')?.imageUrl,
+    certificateUrl: '/certificate-agnivikram.png',
   },
   {
     role: 'Email Marketing Intern',
