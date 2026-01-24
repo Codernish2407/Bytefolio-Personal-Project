@@ -36,7 +36,7 @@ export const projects: Project[] = [
   {
     id: 'p1',
     title: 'FocusFlex – Productivity & Focus Website',
-    description: 'Developed a productivity-focused website using HTML, CSS, and JavaScript. Backend concepts supported using AI tools like Firebase Studio. Designed to help students manage distractions and improve focus. This was a Hackathon Project.',
+    description: 'Developed a productivity-focused website using HTML, CSS, and JavaScript. Backend concepts supported using AI tools like Firebase Studio. Designed to help students manage distractions and improve focus. Type: Hackathon Project',
     techStack: ['HTML', 'CSS', 'JavaScript', 'Firebase Studio'],
     githubUrl: 'https://github.com/Codernish2407',
     image: PlaceHolderImages.find(p => p.id === 'project-1')?.imageUrl || '',
