@@ -23,11 +23,11 @@ export function Projects() {
               <Card key={project.id} className="glass-card flex flex-col overflow-hidden">
                 <CardHeader>
                   {project.images && project.images.length > 0 && (
-                    <Carousel className="w-full" opts={{ align: 'start', loop: true }}>
-                      <CarouselContent className="w-full">
+                    <Carousel className="w-full max-w-full">
+                      <CarouselContent>
                         {project.images.map((image, index) => (
-                          <CarouselItem key={index} className="basis-full">
-                            <div className="aspect-[3/2] relative w-full h-full">
+                          <CarouselItem key={index}>
+                            <div className="aspect-[3/2] relative">
                               <Image
                                 src={image}
                                 alt={`${project.title} screenshot ${index + 1}`}
@@ -41,8 +41,8 @@ export function Projects() {
                       </CarouselContent>
                       {project.images.length > 1 && (
                         <>
-                          <CarouselPrevious className="absolute left-2 top-1/2 -translate-y-1/2 z-10" />
-                          <CarouselNext className="absolute right-2 top-1/2 -translate-y-1/2 z-10" />
+                          <CarouselPrevious className="absolute left-2 top-1/2 -translate-y-1/2" />
+                          <CarouselNext className="absolute right-2 top-1/2 -translate-y-1/2" />
                         </>
                       )}
                     </Carousel>

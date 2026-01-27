@@ -13,7 +13,7 @@ export const about = {
     {
       institution: 'Vasant Kanya Inter College',
       location: 'Varanasi, Uttar Pradesh',
-      degree: 'Class 12 (PCM – Physics, Chemistry, Mathematics)',
+      degree: 'Class 12 (PCM)',
       major: 'Score: 79%',
       duration: 'Completed: June 2025',
     },
@@ -46,6 +46,25 @@ export const projects: Project[] = [
       'https://iili.io/f6qAi2n.png',
     ]
   },
+  {
+  id: 'bytefolio',
+  title: 'Personal Portfolio – Full-Stack Engineering Project',
+  description:
+    'Developed a modern, production-grade personal portfolio website using Next.js, TypeScript, and Tailwind CSS. Implemented an interactive project showcase with image carousels and animations. Built a secure contact form with MongoDB Atlas integration using server actions to store user messages. Designed with a futuristic UI and responsive layout.',
+  images: [
+    'https://i.postimg.cc/s2jhnW8k/Screenshot-2026-01-24-170056.png',
+  ],
+  techStack: [
+    'Next.js',
+    'TypeScript',
+    'Tailwind CSS',
+    'MongoDB Atlas',
+    'Server Actions',
+  ],
+  githubUrl: 'https://github.com/codernish2407', // change if repo link exists
+  liveUrl: '', // optional – can keep empty
+},
+
 ];
 
 export const experiences: Experience[] = [
