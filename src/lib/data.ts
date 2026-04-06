@@ -1,5 +1,5 @@
 import type { Project, Skill, Experience, Achievement, SocialLink, Certificate } from './types';
-import { Github, Linkedin } from 'lucide-react';
+import { Github, Linkedin, Mail } from 'lucide-react';
 
 export const about = {
   education: [
@@ -9,6 +9,7 @@ export const about = {
       degree: 'Bachelor of Technology (B.Tech)',
       major: 'Computer Science Engineering',
       duration: 'August 2025 – July 2029 (Expected)',
+      current cgpa: '8.22',
     },
     {
       institution: 'Vasant Kanya Inter College',
@@ -29,8 +30,10 @@ export const skills: Skill[] = [
   { name: 'CSS', category: 'Languages' },
   { name: 'JavaScript', category: 'Languages' },
   { name: 'GitHub', category: 'Tools & Platforms' },
+  { name: 'VSCode', category: 'Tools & Platforms' },
   { name: 'Database Management Systems (DBMS)', category: 'CS Fundamentals' },
   { name: 'Software Engineering Fundamentals', category: 'CS Fundamentals' },
+  { name: 'OOPs Concepts', category: 'CS Fundamentals' },
 ];
 
 export const projects: Project[] = [
@@ -128,4 +131,5 @@ export const achievements: Achievement[] = [
 export const socialLinks: SocialLink[] = [
     { name: 'GitHub', href: 'https://github.com/Codernish2407', icon: Github },
     { name: 'LinkedIn', href: 'https://www.linkedin.com/in/nishtha-banerjee-392406315', icon: Linkedin },
+    { name: 'E-Mail', href: 'mailto:banerjeenishtha24@gmail.com', icon: Mail },
 ];
