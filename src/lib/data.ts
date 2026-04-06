@@ -9,7 +9,7 @@ export const about = {
       degree: 'Bachelor of Technology (B.Tech)',
       major: 'Computer Science Engineering',
       duration: 'August 2025 – July 2029 (Expected)',
-      current cgpa: '8.22',
+      currentCgpa: '8.22',
     },
     {
       institution: 'Vasant Kanya Inter College',
