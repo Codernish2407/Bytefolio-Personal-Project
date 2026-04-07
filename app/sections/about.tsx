@@ -20,7 +20,7 @@ function SectionWrapper({ id, children }: { id: string; children: React.ReactNod
 }
 
 export function About() {
-  const profileImage = PlaceHolderImages.find(p => p.id === 'profile-picture')?.imageUrl || 'https://picsum.photos/seed/avatar/200/200';
+  const profileImage = PlaceHolderImages.find(p => p.id === 'profile-picture')?.imageUrl || 'https://freeimage.host/i/B5MARPp';
   return (
     <SectionWrapper id="about">
       <div className="flex flex-col items-center gap-8">
@@ -55,6 +55,7 @@ export function About() {
                       <p className="text-sm">{edu.location}</p>
                       <p className="text-sm">{edu.degree}</p>
                       <p className="text-sm">{edu.major}</p>
+                      {edu.currentCgpa && <p className="text-sm">CGPA: {edu.currentCgpa}</p>}
                       <p className="text-sm">{edu.duration}</p>
                     </div>
                   ))}
