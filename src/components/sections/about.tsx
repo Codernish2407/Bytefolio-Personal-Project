@@ -1,7 +1,8 @@
-import { about } from '@/lib/data';
+import { about, skills, socialLinks } from '@/lib/data';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import Image from 'next/image';
 import { PlaceHolderImages } from '@/lib/placeholder-images';
+import Link from 'next/link';
 
 function SectionTitle({ children }: { children: React.ReactNode }) {
   return (
@@ -68,6 +69,39 @@ export function About() {
               <div>
                 <h4 className="font-semibold text-foreground mb-1">Current Focus:</h4>
                 <p>{about.focus}</p>
+              </div>
+              <div>
+                <h4 className="font-semibold text-foreground mb-2">Skills:</h4>
+                <div className="space-y-2">
+                  {['Languages', 'Tools & Platforms', 'CS Fundamentals'].map(category => {
+                    const categorySkills = skills.filter(skill => skill.category === category);
+                    if (categorySkills.length === 0) return null;
+                    return (
+                      <div key={category}>
+                        <p className="text-sm font-medium text-foreground/90">{category}:</p>
+                        <p className="text-sm text-muted-foreground">
+                          {categorySkills.map(skill => skill.name).join(', ')}
+                        </p>
+                      </div>
+                    );
+                  })}
+                </div>
+              </div>
+              <div>
+                <h4 className="font-semibold text-foreground mb-2">Connect with me:</h4>
+                <div className="flex gap-4">
+                  {socialLinks.map((link) => (
+                    <Link
+                      key={link.name}
+                      href={link.href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-muted-foreground hover:text-foreground transition-colors"
+                    >
+                      <link.icon className="h-6 w-6" />
+                    </Link>
+                  ))}
+                </div>
               </div>
             </CardContent>
           </Card>
